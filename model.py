@@ -39,8 +39,18 @@ def drop_piece(board, column, player):
     return new_board
     pass
 
-# Step 4 - column_full (not yet solved)
-# TODO: implement
+# Step 4 - column_full
+import numpy as np
+
+def column_full(board, column):
+    """Return True if `column` has no empty rows left."""
+    # TODO: check whether the column can still accept a piece
+    row = column_top_row(board, column)
+    if row == -1:
+        return True
+    else:
+        return False
+    pass
 
 # Step 5 - valid_moves (not yet solved)
 # TODO: implement
