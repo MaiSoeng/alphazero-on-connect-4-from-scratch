@@ -164,8 +164,11 @@ def is_terminal(board):
     return (status, winner)
     pass
 
-# Step 13 - other_player (not yet solved)
-# TODO: implement
+# Step 13 - other_player
+def other_player(player):
+    # TODO: return the opponent's player code (1 <-> 2)
+    return 3 - player
+    pass
 
 # Step 14 - step_env (not yet solved)
 # TODO: implement
