@@ -192,8 +192,15 @@ def encode_board(board, current_player):
     return encode
     pass
 
-# Step 16 - board_to_torch_tensor (not yet solved)
-# TODO: implement
+# Step 16 - board_to_torch_tensor
+def board_to_torch_tensor(board, current_player):
+    # TODO: encode the board and return it as a float32 torch tensor of shape (1, 2, 6, 7).
+    enc = encode_board(board, current_player)
+    t = torch.from_numpy(enc)
+    tensor = torch.unsqueeze(t, 0)
+
+    return tensor
+    pass
 
 # Step 17 - init_conv_backbone (not yet solved)
 # TODO: implement
