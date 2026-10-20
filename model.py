@@ -369,8 +369,18 @@ def node_q_value(node):
     return Q
     pass
 
-# Step 29 - ucb_score (not yet solved)
-# TODO: implement
+# Step 29 - ucb_score
+import math
+
+def ucb_score(parent, child, c_puct=1.5):
+    # TODO: return Q(child) + c_puct * prior * sqrt(N_parent) / (1 + N_child)
+    Q_child = node_q_value(child)
+    prior = child['prior']
+    N_parent = parent['visit_count']
+    N_child = child['visit_count']
+    puct = Q_child + c_puct * prior * math.sqrt(N_parent) / (1 + N_child)
+    return puct
+    pass
 
 # Step 30 - select_best_child (not yet solved)
 # TODO: implement
