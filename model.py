@@ -344,8 +344,17 @@ def greedy_action_from_policy(logits, mask):
     return int(greedy_action)
     pass
 
-# Step 27 - make_mcts_node (not yet solved)
-# TODO: implement
+# Step 27 - make_mcts_node
+def make_mcts_node(prior=0.0, parent=None):
+    # TODO: build a dict with prior, visit_count, value_sum, children, and parent fields.
+    return {
+        'prior': float(prior),
+        'visit_count': 0,
+        'value_sum': 0.0,
+        'children': {},
+        'parent': parent
+    }
+    pass
 
 # Step 28 - node_q_value (not yet solved)
 # TODO: implement
