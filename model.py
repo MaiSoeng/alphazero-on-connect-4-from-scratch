@@ -419,8 +419,35 @@ def select_leaf(root, c_puct):
 
     pass
 
-# Step 32 - evaluate_with_network (not yet solved)
-# TODO: implement
+# Step 32 - evaluate_with_network
+def evaluate_with_network(net, state, to_play):
+    # TODO: run net on encoded state and return (masked priors np.ndarray (7,), value float)
+     # 1. get the net from the device
+    device = next(net.parameters()).device
+
+    # 2. encode the board, and add batch dimension
+    encoded = encode_board(state, to_play)
+    x = torch.as_tensor(
+        encoded,
+        dtype=torch.float32,
+        device=device,
+    ).unsqueeze(0)  # (C, 6, 7) -> (1, C, 6, 7)
+
+    # 3. identify the columns where moves are allowed
+    mask = action_mask(state)
+
+    # 4. run the network to obtain the probability of a legal move and the position value
+    net.eval()
+    with torch.no_grad():
+        logits, value = net(x)
+        log_probs = masked_log_softmax(logits, mask)
+        probs = log_probs.exp()
+
+    priors = probs.squeeze(0).cpu().numpy()  
+    value = float(value.item())             
+
+    return priors, value
+    pass
 
 # Step 33 - expand_node (not yet solved)
 # TODO: implement
